@@ -458,6 +458,7 @@ export const HomeX = () => {
                                 w={{ md: '25vw', base: '90vw' }}
                                 h={{ md: '45vh', base: '50vh' }}
                                 src={`https://custom-back-zxiu.onrender.com/imgsCamisas/${selectedTShirt.caminhoImagemFrente}`}
+                                //src={`https://custom-back-zxiu.onrender.com/imgsCamisas/${selectedShirt.caminhoImagemFrente}`}
                                 alt="Camisa Selecionada Frente"
                             />
 

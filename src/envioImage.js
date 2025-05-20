@@ -96,7 +96,7 @@ export const sendMessageToWhatsApp = async (clienteWhatsApp, selectedShirt, sele
 
   
   const uploadImageToBackend = async (blob) => {
-
+    console.log("Vai entrar no fech")
     const formData = new FormData();
     const file = new File([blob], "camiseta.png", { type: blob.type });
     formData.append("image", file);
