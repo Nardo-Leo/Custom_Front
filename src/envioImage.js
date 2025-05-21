@@ -85,6 +85,9 @@ export const sendToWhatsApp = async (selectedShirt, selectedArt) => {
 
 
 
+//-------------------------------------------------------------------------------------------------------//
+
+
 export const sendMessageToWhatsApp = async (clienteWhatsApp, selectedShirt, selectedArt) => {
 
 
@@ -99,11 +102,13 @@ export const sendMessageToWhatsApp = async (clienteWhatsApp, selectedShirt, sele
     console.log("Vai entrar no fech")
     const formData = new FormData();
     const file = new File([blob], "camiseta.png", { type: blob.type });
-    formData.append("image", file);
+    formData.append("image", file); 
+
+   
 
     const response = await fetch(`https://custom-back-zxiu.onrender.com/upload`, {
       method: "POST",
-      body: formData,
+      body: formData
 
 
     });
