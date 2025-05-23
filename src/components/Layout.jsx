@@ -8,6 +8,7 @@ export const Layout = ({children}) =>{
         <>
         <Box bg='whitesmoke'  w='99vw' >
             <Header />
+            <Box h='5vh'></Box>
             {children}
         </Box>
         </>

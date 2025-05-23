@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 
 
-import { Box, Grid, GridItem, Center, Stack, Image, Button, Text, createListCollection, Flex } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Center, Stack, Image, Button, Text, createListCollection, Flex, Spinner } from "@chakra-ui/react";
 import {
     SelectContent,
     SelectItem,
@@ -58,7 +58,7 @@ export const HomeX = () => {
 
 
 
-  
+
 
 
     const [icons, setIcons] = useState([]);
@@ -72,7 +72,7 @@ export const HomeX = () => {
 
 
 
-  
+
     const mudarCamisa = (shirt) => {
         setSelecCamisa(shirt);
         console.log(selecCamisa)
@@ -103,11 +103,11 @@ export const HomeX = () => {
             return;
         }
 
-        sendToWhatsApp(selectedTShirt, selectedIcon); 
+        sendToWhatsApp(selectedTShirt, selectedIcon);
     };
 
 
-   
+
 
 
 
@@ -115,12 +115,12 @@ export const HomeX = () => {
 
     const longa = gridCamisas.filter(function (e) {
         return e.modelo === "manga longa" || e.modelo === "Manga Longa"
-        || e.modelo === "Manga longa"|| e.modelo === "manga Longa"
+            || e.modelo === "Manga longa" || e.modelo === "manga Longa"
     })
 
     const curta = gridCamisas.filter(function (e) {
         return e.modelo === "manga curta" || e.modelo === "Manga Curta"
-        || e.modelo === "Manga curta"  || e.modelo === "manga Curta"  
+            || e.modelo === "Manga curta" || e.modelo === "manga Curta"
     })
 
     const regata = gridCamisas.filter(function (e) {
@@ -231,7 +231,7 @@ export const HomeX = () => {
 
 
 
-   
+
 
 
 
@@ -285,7 +285,7 @@ export const HomeX = () => {
                 <MenuRoot>
                     <MenuTrigger asChild>
                         <Button variant="surface" w={{ md: '15vw', base: '30vw' }} fontSize={{ md: '1em', base: '0.7em' }}
-                            bg='black' color='white'
+                            bg='black' color='white' marginRight='18px'
                         >
                             Selecione a cor
                         </Button>
@@ -341,13 +341,13 @@ export const HomeX = () => {
                 </MenuRoot>
 
 
-              
+
 
 
 
             </Box>
 
-
+            <Box h='3vh'></Box>
 
             <Center padding='0px'>
 
@@ -356,7 +356,7 @@ export const HomeX = () => {
 
 
 
-                
+
                     <Grid
                         templateColumns={{ md: "repeat(4, 1fr)", base: 'repeat(3, 1fr)' }}
                         gap="5"
@@ -368,30 +368,53 @@ export const HomeX = () => {
                         padding='10px'
                         border="3px solid black"
                     >
-                        {camisas.map((tshirt) => (
-                            <GridItem
-                                bg="white"
-                                h={{ md: '100px', base: '70px' }}
-                                w={{ md: '100px', base: '70px' }}
-                                key={tshirt.id}
-                                onClick={() => escolherCamisa(tshirt)}
-                                cursor="pointer"
-                                border={selectedTShirt?.id === tshirt.id ? "2px solid blue" : "none"}
-                            >
-                                <Image
-                                    border="1px dashed black"
-                                    h="100%"
-                                    w="100%"
-                                    src={`https://custom-back-zxiu.onrender.com/imgsCamisas/${tshirt.caminhoImagemFrente}`}
-                                    alt={`Estampa ${tshirt.id}`}
+
+                        { camisas == null || camisas == '' ? 
+                        (
+                           <Box  w={{ md: "40vw", base: '90vw' }} display='flex' 
+                           alignItems='center' justifyContent='center' gap='20px'>
+                                
+                                <Spinner 
+                                color='green' 
+                                size='lg'
                                 />
-                            </GridItem>
-                        ))}
+
+                                <Text color='black' fontWeight='bold'>Carregando Camisas...</Text>
+                                
+                                </Box>
+                            
+                        ) : 
+                        
+                        (
+
+
+
+                            camisas.map((tshirt) => (
+                                <GridItem
+                                    bg="white"
+                                    h={{ md: '100px', base: '70px' }}
+                                    w={{ md: '100px', base: '70px' }}
+                                    key={tshirt.id}
+                                    onClick={() => escolherCamisa(tshirt)}
+                                    cursor="pointer"
+                                    border={selectedTShirt?.id === tshirt.id ? "2px solid blue" : "none"}
+                                >
+                                    <Image
+                                        border="1px dashed black"
+                                        h="100%"
+                                        w="100%"
+                                        src={`https://custom-back-zxiu.onrender.com/imgsCamisas/${tshirt.caminhoImagemFrente}`}
+                                        alt={`Estampa ${tshirt.id}`}
+                                    />
+                                </GridItem>
+                            ))
+                        )}
+
                     </Grid>
 
                     <Center>
                         <Stack>
-                            
+
                             <Grid
                                 templateColumns={{ md: "repeat(4, 1fr)", base: 'repeat(3, 1fr)' }}
                                 gap="1"
@@ -403,25 +426,40 @@ export const HomeX = () => {
                                 padding="10px"
                                 border='3px solid black'
                             >
-                                {icons.map((icon) => (
-                                    <GridItem
-                                        bg="white"
-                                        h={{ md: '100px', base: '70px' }}
-                                        w={{ md: '100px', base: '70px' }}
-                                        key={icon.id}
-                                        onClick={() => escolherArte(icon)}
-                                        cursor="pointer"
-                                        border={selectedIcon?.id === icon.id ? "2px solid blue" : "none"}
-                                    >
-                                        <Image
-                                            border='1px dashed black'
-                                            h='100%'
-                                            w='100%'
-                                            src={`https://custom-back-zxiu.onrender.com/imgsEstampas/${icon.caminhoImagemEstampa}`}
-                                            alt={`Estampa ${icon.id}`}
-                                        />
-                                    </GridItem>
-                                ))}
+                                {icons == null || icons == '' ? 
+                                (<Box  w={{ md: "40vw", base: '90vw' }} display='flex' 
+                                    alignItems='center' justifyContent='center' gap='20px'>
+                                         
+                                         <Spinner 
+                                         color='green' 
+                                         size='lg'
+                                         />
+         
+                                         <Text color='black' fontWeight='bold'>Carregando Estampas...</Text>
+                                         
+                                         </Box>)
+                            :
+                            (icons.map((icon) => (
+                                <GridItem
+                                    bg="white"
+                                    h={{ md: '100px', base: '70px' }}
+                                    w={{ md: '100px', base: '70px' }}
+                                    key={icon.id}
+                                    onClick={() => escolherArte(icon)}
+                                    cursor="pointer"
+                                    border={selectedIcon?.id === icon.id ? "2px solid blue" : "none"}
+                                >
+                                    <Image
+                                        border='1px dashed black'
+                                        h='100%'
+                                        w='100%'
+                                        src={`https://custom-back-zxiu.onrender.com/imgsEstampas/${icon.caminhoImagemEstampa}`}
+                                        alt={`Estampa ${icon.id}`}
+                                    />
+                                </GridItem>
+                            )))
+                            }
+                                
                             </Grid>
                         </Stack>
                     </Center>
@@ -520,8 +558,10 @@ export const HomeX = () => {
 
 
             <Box>
-                <Button position='fixed' right='20px' bottom='20px' marginRight='25px'
-                    borderRadius='30px' w='50px' h='50px' variant="solid" bg='green'
+                <Button
+                    position='fixed' right='20px' bottom='40px' zIndex='1'
+                    marginRight='20px' borderRadius='15px' w='70px' h='60px'
+                    variant="solid" bg='green'
                     onClick={() => sendMessageToWhatsApp('5585996518936', selectedTShirt, selectedIcon)}
 
                 >

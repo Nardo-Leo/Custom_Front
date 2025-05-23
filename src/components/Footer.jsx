@@ -54,7 +54,7 @@ export const Footer = () => {
 
                             <Button bg='black' h='17px' fontSize='0.8em' >
                             <SlLocationPin />
-                                <Text>Rua: RuaUmDoisTrês, BairroQuatro</Text>
+                                <Text zIndex='0'>Rua: RuaUmDoisTrês, BairroQuatro</Text>
                             </Button>
 
                         </ListItem>
